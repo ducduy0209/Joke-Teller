@@ -1,5 +1,16 @@
 const button = document.getElementById('button');
 const audioElement = document.getElementById('audio');
+const loader = document.querySelector('.loader');
+
+// Show loader
+const showLoader = () => {
+    loader.hidden = false;
+}
+
+// Hide Loader
+const hideLoader = () => {
+    loader.hidden = true;
+}
 
 // Text-to-speech
 function tellMe(joke) {
@@ -13,6 +24,8 @@ function tellMe(joke) {
         f: '44khz_16bit_stereo',
         ssml: false
     });
+    // Hide loader
+    hideLoader();
 }
 
 // Enable / Disable button
@@ -23,6 +36,8 @@ function toggleButton() {
 
 // Get Joke From API
 async function getJokesFromAPI() {
+    // Show loader
+    showLoader();
     const apiUrl = 'https://v2.jokeapi.dev/joke/Programming,Spooky?blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
     let joke = '';
     try {
